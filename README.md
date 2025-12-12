@@ -43,7 +43,7 @@ Kevlar automates adversarial testing of all **10 OWASP ASI risks**, ordered by r
 | Rank | ASI ID | Vulnerability                      | Criticality | Real Incidents (2025)     | Kevlar Status |
 |------|--------|------------------------------------|-------------|---------------------------|---------------|
 | 🔥 1 | ASI01  | Agent Goal Hijack                  | Critical    | EchoLeak, Operator, Inception | ✅ Implemented |
-| 💥 2 | ASI05  | Unexpected Code Execution (RCE)    | Critical    | Cursor RCE, Replit Meltdown | 🚧 In Progress |
+| 💥 2 | ASI05  | Unexpected Code Execution (RCE)    | Critical    | Cursor RCE, Replit Meltdown | ✅ Implemented |
 | ⚠️ 3 | ASI03  | Identity & Privilege Abuse         | High        | Copilot Studio Leak       | 🚧 Planned    |
 | ⚠️ 4 | ASI02  | Tool Misuse & Exploitation         | High        | EDR Bypass via Chaining   | 🚧 Planned    |
 | ⚠️ 5 | ASI04  | Agentic Supply Chain               | High        | Postmark MCP BCC          | 🚧 Planned    |
