@@ -43,7 +43,7 @@ def mock_langchain_only():
         if 'langchain_asi04_adapter' in sys.modules:
             del sys.modules['langchain_asi04_adapter']
 
-        from langchain_asi04_adapter import LangChainASI04Agent
+        from kevlar.agents.adapters.asi04 import LangChainASI04Agent
         yield LangChainASI04Agent
 
 
@@ -310,7 +310,7 @@ class TestLangChainASI04AutogenMode:
             if 'langchain_asi04_adapter' in sys.modules:
                 del sys.modules['langchain_asi04_adapter']
 
-            import langchain_asi04_adapter
+            import kevlar.agents.adapters.asi04 as langchain_asi04_adapter
             langchain_asi04_adapter.AUTOGEN_AVAILABLE = True
 
             agent = langchain_asi04_adapter.LangChainASI04Agent(framework="autogen")
@@ -337,7 +337,7 @@ class TestLangChainASI04AutogenMode:
             if 'langchain_asi04_adapter' in sys.modules:
                 del sys.modules['langchain_asi04_adapter']
 
-            import langchain_asi04_adapter
+            import kevlar.agents.adapters.asi04 as langchain_asi04_adapter
             langchain_asi04_adapter.AUTOGEN_AVAILABLE = True
 
             agent = langchain_asi04_adapter.LangChainASI04Agent(framework="autogen")

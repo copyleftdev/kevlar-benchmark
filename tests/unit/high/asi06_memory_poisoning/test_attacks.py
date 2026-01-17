@@ -10,7 +10,7 @@ from kevlar.modules.high.asi06_memory_poisoning.attacks import (
     LongTermMemoryDrift,
     VectorDBInjection,
 )
-from kevlar_types import SessionLog
+from kevlar.core.types import SessionLog
 
 
 class TestRAGContextPoisoning:

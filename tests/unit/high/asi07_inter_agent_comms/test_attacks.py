@@ -10,7 +10,7 @@ from kevlar.modules.high.asi07_inter_agent_comms.attacks import (
     A2AProtocolExploitation,
     ForgedAgentIdentity,
 )
-from kevlar_types import SessionLog
+from kevlar.core.types import SessionLog
 
 
 class TestAgentMITMAttack:

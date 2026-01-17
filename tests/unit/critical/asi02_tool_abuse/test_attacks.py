@@ -16,7 +16,7 @@ from kevlar.modules.critical.asi02_tool_abuse.attacks import (
     ToolNameImpersonation,
     ApprovedToolMisuse,
 )
-from kevlar_types import SessionLog
+from kevlar.core.types import SessionLog
 
 
 class TestOverprivilegedToolAbuse:

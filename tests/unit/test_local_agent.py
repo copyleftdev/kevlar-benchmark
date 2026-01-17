@@ -4,7 +4,7 @@ Unit tests for local_agent module (MockCopilotAgent).
 
 import pytest
 
-from local_agent import MockCopilotAgent
+from kevlar.agents import MockCopilotAgent
 
 
 class TestMockCopilotAgentCreation:

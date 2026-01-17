@@ -12,7 +12,7 @@ from kevlar.modules.critical.asi03_identity_abuse.attacks import (
     TOCTOUPrivilegeEscalation,
     CrossAgentConfusion,
 )
-from kevlar_types import SessionLog
+from kevlar.core.types import SessionLog
 
 
 class TestConfusedDeputyAttack:

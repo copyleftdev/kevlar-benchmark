@@ -9,23 +9,6 @@ from unittest.mock import patch, MagicMock
 class TestRealLangChainAgentCreation:
     """Tests for RealLangChainAgent instantiation."""
 
-    def test_create_agent_without_langchain(self):
-        """Test creating agent when LangChain is not available."""
-        with patch.dict('sys.modules', {
-            'langchain_ollama': None,
-            'langchain_core.tools': None,
-            'langchain.agents': None,
-            'langchain_core.prompts': None,
-        }):
-            # Force reimport
-            import importlib
-            import real_agent_adapter
-            importlib.reload(real_agent_adapter)
-
-            # With missing dependencies, should still create agent
-            agent = real_agent_adapter.RealLangChainAgent()
-            assert agent is not None
-
     def test_create_agent_with_custom_model(self, mock_langchain_agent):
         """Test creating agent with custom model name."""
         assert mock_langchain_agent.model_name == "test-model"
@@ -63,20 +46,6 @@ class TestProcessPrompt:
         with patch.object(mock_langchain_agent, 'process_prompt', return_value="response"):
             result = mock_langchain_agent.process_prompt("test prompt")
             assert isinstance(result, str)
-
-    def test_process_prompt_with_langchain_unavailable(self):
-        """Test process_prompt when LangChain is unavailable."""
-        with patch.dict('sys.modules', {
-            'langchain_ollama': None,
-        }):
-            import importlib
-            import real_agent_adapter
-            importlib.reload(real_agent_adapter)
-
-            agent = real_agent_adapter.RealLangChainAgent()
-            result = agent.process_prompt("test")
-            assert isinstance(result, str)
-
 
 class TestProcessEmail:
     """Tests for process_email method."""

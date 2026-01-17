@@ -41,7 +41,7 @@ def mock_langchain_modules():
         if 'langchain_asi02_adapter' in sys.modules:
             del sys.modules['langchain_asi02_adapter']
 
-        from langchain_asi02_adapter import LangChainASI02Agent
+        from kevlar.agents.adapters.asi02 import LangChainASI02Agent
         yield LangChainASI02Agent
 
 

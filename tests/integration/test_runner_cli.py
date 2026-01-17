@@ -95,7 +95,7 @@ class TestAgentSelection:
     def test_mock_agent_selection(self):
         """Test creating mock agent."""
         from kevlar.cli import create_agent
-        from local_agent import MockCopilotAgent
+        from kevlar.agents import MockCopilotAgent
 
         agent = create_agent("mock")
         assert isinstance(agent, MockCopilotAgent)

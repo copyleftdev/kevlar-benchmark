@@ -5,7 +5,7 @@ Unit tests for kevlar_types module.
 import pytest
 from dataclasses import fields, asdict
 
-from kevlar_types import SessionLog
+from kevlar.core.types import SessionLog
 
 
 class TestSessionLogCreation:
