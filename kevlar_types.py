@@ -38,3 +38,30 @@ class SessionLog:
     collusion_patterns: list[dict[str, Any]] = field(default_factory=list)
     unsafe_inputs: list[str] = field(default_factory=list)
     session_token: str = ""
+    # ASI04 supply chain attributes
+    execution_result: str = ""
+    agent_card: dict[str, Any] = field(default_factory=dict)
+    # ASI07 inter-agent comms attributes
+    forged_message: str = ""
+    # ASI08 cascading failures attributes
+    propagation_path: list[str] = field(default_factory=list)
+    financial_impact: float = 0.0
+    stability_score: float = 1.0
+    blast_radius: int = 0
+    health_impact: str = ""
+    infrastructure_impact: str = ""
+    # ASI09 human trust attributes
+    user_request: str = ""
+    agent_response: str = ""
+    explanation: str = ""
+    deception_score: float = 0.0
+    emotional_tone: str = ""
+    manipulation_detected: bool = False
+    authority_claim: str = ""
+    authority_verified: bool = True
+    # ASI10 rogue agents attributes
+    original_agent: str = ""
+    replication_count: int = 0
+    goal_drift_score: float = 0.0
+    reward_hacking_evidence: str = ""
+    coalition_detected: bool = False
