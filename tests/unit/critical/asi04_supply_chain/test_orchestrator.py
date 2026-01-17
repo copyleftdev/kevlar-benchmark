@@ -5,7 +5,7 @@ Unit tests for ASI04 Supply Chain Orchestrator.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.critical.asi04_supply_chain import SupplyChainOrchestrator
+from kevlar.modules.critical.asi04_supply_chain import SupplyChainOrchestrator
 
 
 class TestSupplyChainOrchestratorCreation:

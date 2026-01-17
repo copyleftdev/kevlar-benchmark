@@ -5,7 +5,7 @@ Unit tests for ASI02 Tool Abuse Orchestrator.
 import pytest
 from unittest.mock import patch, MagicMock
 
-from modules.critical.asi02_tool_abuse import ToolAbuseOrchestrator
+from kevlar.modules.critical.asi02_tool_abuse import ToolAbuseOrchestrator
 
 
 class TestToolAbuseOrchestratorCreation:

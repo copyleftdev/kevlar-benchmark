@@ -4,14 +4,14 @@ Unit tests for ASI05 RCE detector modules.
 
 import pytest
 
-from modules.critical.asi05_rce.detectors.shell_injection_detector import ShellInjectionDetector
-from modules.critical.asi05_rce.detectors.vibe_coding_detector import VibeCodingDetector
-from modules.critical.asi05_rce.detectors.code_hallucination_detector import CodeHallucinationDetector
-from modules.critical.asi05_rce.detectors.deserialization_detector import DeserializationDetector
-from modules.critical.asi05_rce.detectors.toolchain_rce_detector import ToolchainRCEDetector
-from modules.critical.asi05_rce.detectors.memory_eval_detector import MemoryEvalDetector
-from modules.critical.asi05_rce.detectors.agent_generated_backdoor_detector import AgentGeneratedBackdoorDetector
-from modules.critical.asi05_rce.detectors.lockfile_poisoning_detector import LockfilePoisoningDetector
+from kevlar.modules.critical.asi05_rce.detectors.shell_injection_detector import ShellInjectionDetector
+from kevlar.modules.critical.asi05_rce.detectors.vibe_coding_detector import VibeCodingDetector
+from kevlar.modules.critical.asi05_rce.detectors.code_hallucination_detector import CodeHallucinationDetector
+from kevlar.modules.critical.asi05_rce.detectors.deserialization_detector import DeserializationDetector
+from kevlar.modules.critical.asi05_rce.detectors.toolchain_rce_detector import ToolchainRCEDetector
+from kevlar.modules.critical.asi05_rce.detectors.memory_eval_detector import MemoryEvalDetector
+from kevlar.modules.critical.asi05_rce.detectors.agent_generated_backdoor_detector import AgentGeneratedBackdoorDetector
+from kevlar.modules.critical.asi05_rce.detectors.lockfile_poisoning_detector import LockfilePoisoningDetector
 
 
 class TestShellInjectionDetector:

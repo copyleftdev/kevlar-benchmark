@@ -5,7 +5,7 @@ Unit tests for ASI03 Identity Abuse attack modules.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.critical.asi03_identity_abuse.attacks import (
+from kevlar.modules.critical.asi03_identity_abuse.attacks import (
     ConfusedDeputyAttack,
     SyntheticIdentityAbuse,
     PluginImpersonation,

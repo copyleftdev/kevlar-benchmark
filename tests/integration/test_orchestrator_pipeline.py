@@ -5,8 +5,8 @@ Integration tests for orchestrator pipeline.
 import pytest
 from unittest.mock import MagicMock, patch
 
-from local_agent import MockCopilotAgent
-from kevlar_types import SessionLog
+from kevlar.agents import MockCopilotAgent
+from kevlar.core.types import SessionLog
 
 
 class TestOrchestratorPipeline:
@@ -14,7 +14,7 @@ class TestOrchestratorPipeline:
 
     def test_asi01_full_pipeline(self, mock_agent):
         """Test ASI01 full pipeline."""
-        from modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
+        from kevlar.modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
 
         orchestrator = GoalHijackOrchestrator(mock_agent)
         results = orchestrator.run_all_scenarios()
@@ -26,7 +26,7 @@ class TestOrchestratorPipeline:
 
     def test_asi02_full_pipeline(self, mock_agent):
         """Test ASI02 full pipeline."""
-        from modules.critical.asi02_tool_abuse import ToolAbuseOrchestrator
+        from kevlar.modules.critical.asi02_tool_abuse import ToolAbuseOrchestrator
 
         orchestrator = ToolAbuseOrchestrator(mock_agent)
         results = orchestrator.run_all_tests()
@@ -37,7 +37,7 @@ class TestOrchestratorPipeline:
 
     def test_asi03_full_pipeline(self, mock_agent):
         """Test ASI03 full pipeline."""
-        from modules.critical.asi03_identity_abuse import IdentityOrchestrator
+        from kevlar.modules.critical.asi03_identity_abuse import IdentityOrchestrator
 
         orchestrator = IdentityOrchestrator(mock_agent)
         results = orchestrator.run_all_tests()
@@ -48,7 +48,7 @@ class TestOrchestratorPipeline:
 
     def test_asi04_full_pipeline(self, mock_agent):
         """Test ASI04 full pipeline."""
-        from modules.critical.asi04_supply_chain import SupplyChainOrchestrator
+        from kevlar.modules.critical.asi04_supply_chain import SupplyChainOrchestrator
 
         orchestrator = SupplyChainOrchestrator(mock_agent)
         results = orchestrator.run_all_tests()
@@ -59,7 +59,7 @@ class TestOrchestratorPipeline:
 
     def test_asi05_full_pipeline(self, mock_agent):
         """Test ASI05 full pipeline."""
-        from modules.critical.asi05_rce.rce_orchestrator import RCEOrchestrator
+        from kevlar.modules.critical.asi05_rce.rce_orchestrator import RCEOrchestrator
 
         orchestrator = RCEOrchestrator(mock_agent)
         results = orchestrator.run_all_tests()
@@ -70,7 +70,7 @@ class TestOrchestratorPipeline:
 
     def test_asi06_full_pipeline(self, mock_agent):
         """Test ASI06 full pipeline."""
-        from modules.high.asi06_memory_poisoning import MemoryPoisoningOrchestrator
+        from kevlar.modules.high.asi06_memory_poisoning import MemoryPoisoningOrchestrator
 
         orchestrator = MemoryPoisoningOrchestrator(mock_agent)
         results = orchestrator.run_all_tests()
@@ -81,7 +81,7 @@ class TestOrchestratorPipeline:
 
     def test_asi07_full_pipeline(self, mock_agent):
         """Test ASI07 full pipeline."""
-        from modules.high.asi07_inter_agent_comms import InterAgentOrchestrator
+        from kevlar.modules.high.asi07_inter_agent_comms import InterAgentOrchestrator
 
         orchestrator = InterAgentOrchestrator(mock_agent)
         results = orchestrator.run_all_tests()
@@ -92,7 +92,7 @@ class TestOrchestratorPipeline:
 
     def test_asi08_full_pipeline(self, mock_agent):
         """Test ASI08 full pipeline."""
-        from modules.high.asi08_cascading_failures import CascadingOrchestrator
+        from kevlar.modules.high.asi08_cascading_failures import CascadingOrchestrator
 
         orchestrator = CascadingOrchestrator(mock_agent)
         results = orchestrator.run_all_tests()
@@ -103,7 +103,7 @@ class TestOrchestratorPipeline:
 
     def test_asi09_full_pipeline(self, mock_agent):
         """Test ASI09 full pipeline."""
-        from modules.medium.asi09_human_trust import HumanTrustOrchestrator
+        from kevlar.modules.medium.asi09_human_trust import HumanTrustOrchestrator
 
         orchestrator = HumanTrustOrchestrator(mock_agent)
         results = orchestrator.run_all_tests()
@@ -114,7 +114,7 @@ class TestOrchestratorPipeline:
 
     def test_asi10_full_pipeline(self, mock_agent):
         """Test ASI10 full pipeline."""
-        from modules.medium.asi10_rogue_agents import RogueAgentOrchestrator
+        from kevlar.modules.medium.asi10_rogue_agents import RogueAgentOrchestrator
 
         orchestrator = RogueAgentOrchestrator(mock_agent)
         results = orchestrator.run_all_tests()
@@ -129,9 +129,9 @@ class TestCrossModuleIntegration:
 
     def test_all_orchestrators_with_same_agent(self, mock_agent):
         """Test all orchestrators work with same agent instance."""
-        from modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
-        from modules.critical.asi02_tool_abuse import ToolAbuseOrchestrator
-        from modules.critical.asi03_identity_abuse import IdentityOrchestrator
+        from kevlar.modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
+        from kevlar.modules.critical.asi02_tool_abuse import ToolAbuseOrchestrator
+        from kevlar.modules.critical.asi03_identity_abuse import IdentityOrchestrator
 
         # All orchestrators should work with same agent
         orchestrator1 = GoalHijackOrchestrator(mock_agent)
@@ -148,7 +148,7 @@ class TestCrossModuleIntegration:
 
     def test_session_log_compatibility(self, mock_agent):
         """Test SessionLog compatibility across modules."""
-        from modules.critical.asi02_tool_abuse.attacks import OverprivilegedToolAbuse
+        from kevlar.modules.critical.asi02_tool_abuse.attacks import OverprivilegedToolAbuse
 
         attack = OverprivilegedToolAbuse(mock_agent)
         result = attack.execute()
@@ -164,7 +164,7 @@ class TestErrorRecovery:
 
     def test_orchestrator_continues_after_attack_error(self, mock_agent):
         """Test orchestrator continues after attack error."""
-        from modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
+        from kevlar.modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
 
         orchestrator = GoalHijackOrchestrator(mock_agent)
 
@@ -184,8 +184,8 @@ class TestResultConsistency:
 
     def test_results_structure_consistent(self, mock_agent):
         """Test that result structure is consistent across orchestrators."""
-        from modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
-        from modules.critical.asi02_tool_abuse import ToolAbuseOrchestrator
+        from kevlar.modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
+        from kevlar.modules.critical.asi02_tool_abuse import ToolAbuseOrchestrator
 
         orchestrator1 = GoalHijackOrchestrator(mock_agent)
         orchestrator2 = ToolAbuseOrchestrator(mock_agent)
@@ -204,7 +204,7 @@ class TestResultConsistency:
 
     def test_severity_values_valid(self, mock_agent):
         """Test that severity values are valid."""
-        from modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
+        from kevlar.modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
 
         orchestrator = GoalHijackOrchestrator(mock_agent)
         results = orchestrator.run_all_scenarios()

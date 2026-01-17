@@ -4,7 +4,7 @@ Unit tests for ASI08 Cascading Failures attack modules.
 
 import pytest
 
-from modules.high.asi08_cascading_failures.attacks import (
+from kevlar.modules.high.asi08_cascading_failures.attacks import (
     FinancialTradingCascade,
     HealthcareSystemFailure,
     CloudOrchestrationMeltdown,

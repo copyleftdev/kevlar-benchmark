@@ -4,7 +4,7 @@ Unit tests for ASI07 Inter-Agent Communication attack modules.
 
 import pytest
 
-from modules.high.asi07_inter_agent_comms.attacks import (
+from kevlar.modules.high.asi07_inter_agent_comms.attacks import (
     AgentMITMAttack,
     MCPDescriptorForgery,
     A2AProtocolExploitation,

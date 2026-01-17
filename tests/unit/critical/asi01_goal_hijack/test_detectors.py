@@ -4,7 +4,7 @@ Unit tests for ASI01 Goal Hijack detector modules.
 
 import pytest
 
-from modules.critical.asi01_goal_hijack.detectors import (
+from kevlar.modules.critical.asi01_goal_hijack.detectors import (
     DataExfilDetector,
     GoalDriftAnalyzer,
 )

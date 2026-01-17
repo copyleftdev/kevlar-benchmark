@@ -5,7 +5,7 @@ Unit tests for ASI01 Goal Hijack attack modules.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.critical.asi01_goal_hijack.attacks import (
+from kevlar.modules.critical.asi01_goal_hijack.attacks import (
     EchoLeakSimulator,
     OperatorWebInjection,
     InceptionDocInjection,
@@ -145,7 +145,7 @@ class TestAttackIntegration:
 
     def test_echoleak_to_detector_flow(self, mock_agent):
         """Test EchoLeak attack produces detectable output."""
-        from modules.critical.asi01_goal_hijack.detectors import DataExfilDetector
+        from kevlar.modules.critical.asi01_goal_hijack.detectors import DataExfilDetector
 
         simulator = EchoLeakSimulator(mock_agent)
         simulator.inject_malicious_email()

@@ -4,7 +4,7 @@ Unit tests for ASI06 Memory Poisoning attack modules.
 
 import pytest
 
-from modules.high.asi06_memory_poisoning.attacks import (
+from kevlar.modules.high.asi06_memory_poisoning.attacks import (
     RAGContextPoisoning,
     SessionMemoryBleed,
     LongTermMemoryDrift,

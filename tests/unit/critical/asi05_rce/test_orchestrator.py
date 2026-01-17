@@ -5,7 +5,7 @@ Unit tests for ASI05 RCE Orchestrator.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.critical.asi05_rce.rce_orchestrator import RCEOrchestrator
+from kevlar.modules.critical.asi05_rce.rce_orchestrator import RCEOrchestrator
 
 
 class TestRCEOrchestratorCreation:

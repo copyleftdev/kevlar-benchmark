@@ -4,7 +4,7 @@ Unit tests for ASI04 Supply Chain detector modules.
 
 import pytest
 
-from modules.critical.asi04_supply_chain.detectors import (
+from kevlar.modules.critical.asi04_supply_chain.detectors import (
     MCPSignatureDetector,
     AgentProvenanceDetector,
     DependencyIntegrityDetector,

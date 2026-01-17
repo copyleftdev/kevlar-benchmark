@@ -4,7 +4,7 @@ Unit tests for ASI08 Cascading Failures detector modules.
 
 import pytest
 
-from modules.high.asi08_cascading_failures.detectors import (
+from kevlar.modules.high.asi08_cascading_failures.detectors import (
     CascadePropagationDetector,
     SystemStabilityAnalyzer,
     BlastRadiusCalculator,

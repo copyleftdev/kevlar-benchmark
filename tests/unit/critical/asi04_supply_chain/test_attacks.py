@@ -5,7 +5,7 @@ Unit tests for ASI04 Supply Chain attack modules.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.critical.asi04_supply_chain.attacks import (
+from kevlar.modules.critical.asi04_supply_chain.attacks import (
     MCPDescriptorPoisoning,
     AgentCardForgery,
     LockfilePoisoning,

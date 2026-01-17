@@ -5,7 +5,7 @@ Unit tests for core/threat_orchestrator module.
 import pytest
 from unittest.mock import patch, MagicMock
 
-from core.threat_orchestrator import ThreatOrchestrator
+from kevlar.core import ThreatOrchestrator
 
 
 class TestThreatOrchestratorCreation:
@@ -138,7 +138,7 @@ class TestThreatOrchestratorIntegration:
 
     def test_orchestrator_module_loading(self):
         """Test that orchestrator can be loaded from module path."""
-        from core.threat_orchestrator import ThreatOrchestrator
+        from kevlar.core import ThreatOrchestrator
         assert ThreatOrchestrator is not None
 
     def test_threat_rank_comment_descriptions(self):

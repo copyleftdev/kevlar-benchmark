@@ -5,7 +5,7 @@ Unit tests for ASI09 Human Trust Exploitation Orchestrator.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.medium.asi09_human_trust import HumanTrustOrchestrator
+from kevlar.modules.medium.asi09_human_trust import HumanTrustOrchestrator
 
 
 class TestHumanTrustOrchestratorCreation:

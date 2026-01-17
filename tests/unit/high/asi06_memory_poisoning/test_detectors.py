@@ -4,7 +4,7 @@ Unit tests for ASI06 Memory Poisoning detector modules.
 
 import pytest
 
-from modules.high.asi06_memory_poisoning.detectors import (
+from kevlar.modules.high.asi06_memory_poisoning.detectors import (
     ContextBleedDetector,
     MemoryDriftAnalyzer,
     EmbeddingSimilarityDetector,

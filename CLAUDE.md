@@ -32,26 +32,26 @@ Kevlar is a red team security benchmark for testing AI agents against the OWASP 
 uv sync
 
 # Run full benchmark (interactive mode)
-uv run python runner.py
+uv run kevlar
+# Or: uv run python -m kevlar.cli
 
-# Run individual ASI test modules
-uv run python test_asi01.py   # Agent Goal Hijack
-uv run python test_asi02.py   # Tool Misuse
-uv run python test_asi03.py   # Identity Abuse
-uv run python test_asi04.py   # Supply Chain
-uv run python test_asi05.py   # RCE
-uv run python test_asi06.py   # Memory Poisoning
-uv run python test_asi07.py   # Inter-Agent Comms
-uv run python test_asi08.py   # Cascading Failures
-uv run python test_asi09.py   # Human Trust
-uv run python test_asi10.py   # Rogue Agents
+# Run individual ASI test scripts
+uv run python scripts/run_asi01.py   # Agent Goal Hijack
+uv run python scripts/run_asi02.py   # Tool Misuse
+uv run python scripts/run_asi03.py   # Identity Abuse
+uv run python scripts/run_asi04.py   # Supply Chain
+uv run python scripts/run_asi05.py   # RCE
+uv run python scripts/run_asi06.py   # Memory Poisoning
+uv run python scripts/run_asi07.py   # Inter-Agent Comms
+uv run python scripts/run_asi08.py   # Cascading Failures
+uv run python scripts/run_asi09.py   # Human Trust
+uv run python scripts/run_asi10.py   # Rogue Agents
 
 # Run tests
 uv run pytest tests/                    # All tests
 uv run pytest tests/unit/               # Unit tests only
 uv run pytest tests/integration/        # Integration tests only
 uv run pytest tests/ -v --tb=short      # Verbose with short traceback
-uv run pytest tests/ --cov=. --cov-report=html  # With coverage report
 ```
 
 ## Testing
@@ -90,7 +90,7 @@ tests/
 ### Test Stats
 
 - **591 tests** total
-- **Coverage: ~54%** (threshold: 40%)
+- **Coverage: ~56%** (threshold: 40%)
 - Unit tests for all 10 ASI modules
 - Integration tests for CLI and orchestrator pipeline
 
@@ -105,22 +105,53 @@ tests/
 
 ## Architecture
 
+### Project Structure (src layout)
+
+```
+kevlar-benchmark/
+├── pyproject.toml
+├── README.md, CLAUDE.md
+├── src/kevlar/
+│   ├── __init__.py
+│   ├── cli.py                     # Main CLI entry point
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── orchestrator.py        # ThreatOrchestrator
+│   │   └── types.py               # SessionLog dataclass
+│   ├── agents/
+│   │   ├── __init__.py
+│   │   ├── protocol.py            # AgentProtocol (typing)
+│   │   ├── mock.py                # MockCopilotAgent
+│   │   ├── langchain.py           # RealLangChainAgent
+│   │   └── adapters/
+│   │       ├── asi02.py           # LangChainASI02Agent
+│   │       └── asi04.py           # LangChainASI04Agent
+│   └── modules/                   # ASI test modules
+│       ├── critical/              # ASI01-ASI05
+│       ├── high/                  # ASI06-ASI08
+│       └── medium/                # ASI09-ASI10
+├── scripts/
+│   └── run_asi*.py                # Individual ASI runners
+└── tests/                         # pytest tests
+```
+
 ### Core Components
 
-- `runner.py` - Main CLI orchestrator with interactive mode selection (mock vs real agent, ASI selection)
-- `core/threat_orchestrator.py` - Central dispatcher that runs ASI modules in risk order
-- `kevlar_types.py` - `SessionLog` dataclass capturing all benchmark artifacts (tool calls, network egress, drift scores, etc.)
+- `src/kevlar/cli.py` - Main CLI entry point (`kevlar` command)
+- `src/kevlar/core/orchestrator.py` - Central dispatcher that runs ASI modules in risk order
+- `src/kevlar/core/types.py` - `SessionLog` dataclass capturing all benchmark artifacts
 
 ### Agent Adapters
 
-- `local_agent.py` - `MockCopilotAgent` for safe testing (returns predetermined safe responses)
-- `real_agent_adapter.py` - `RealLangChainAgent` integrating LangChain + Ollama for actual LLM testing
-- `real_agent.py` - Alternative real agent implementation
-- `langchain_asi02_adapter.py`, `langchain_asi04_adapter.py` - Specialized LangChain adapters for specific ASI tests
+All agents implement `AgentProtocol` (see `src/kevlar/agents/protocol.py`):
+
+- `src/kevlar/agents/mock.py` - `MockCopilotAgent` for safe testing
+- `src/kevlar/agents/langchain.py` - `RealLangChainAgent` for LLM testing
+- `src/kevlar/agents/adapters/` - Specialized adapters for specific ASI tests
 
 ### ASI Modules Structure
 
-Modules are organized by criticality under `modules/`:
+Modules are organized by criticality under `src/kevlar/modules/`:
 
 ```
 modules/
@@ -147,20 +178,22 @@ Each ASI module follows the pattern:
 - `attacks/` subdirectory with attack simulators
 - `detectors/` subdirectory with vulnerability detection logic
 
-### Agent Interface Contract
+### Imports
 
-All agent adapters must implement these methods (see `local_agent.py` for reference):
-- `process_email(email)` - Process email input
-- `process_rag_query(query, context)` - Handle RAG queries
-- `process_document(doc)` - Document processing
-- `process_prompt(prompt)` - Generic prompt handling
-- `execute_tool_chain(chain)` - Multi-tool execution
-- `generate_code(prompt)` - Code generation
-- `approve_transaction(**kwargs)` - Transaction approval
-- `install_plugin(plugin)` - Plugin installation
-- `read_file(path)` - File reading
-- `start_session(user_role)` / `execute_with_token(token, action)` - Session handling
-- `process_inter_agent_message(msg)` - Inter-agent communication
+Use the new kevlar.* import paths:
+
+```python
+# Core types
+from kevlar.core.types import SessionLog
+from kevlar.core import ThreatOrchestrator
+
+# Agents
+from kevlar.agents import MockCopilotAgent, RealLangChainAgent, AgentProtocol
+from kevlar.agents.adapters import LangChainASI02Agent, LangChainASI04Agent
+
+# Modules
+from kevlar.modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
+```
 
 ### Output
 

@@ -4,7 +4,7 @@ Unit tests for ASI07 Inter-Agent Communication detector modules.
 
 import pytest
 
-from modules.high.asi07_inter_agent_comms.detectors import (
+from kevlar.modules.high.asi07_inter_agent_comms.detectors import (
     MessageIntegrityDetector,
     DescriptorSignatureDetector,
     IdentityVerificationDetector,

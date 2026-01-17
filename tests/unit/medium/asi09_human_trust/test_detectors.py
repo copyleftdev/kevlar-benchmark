@@ -4,7 +4,7 @@ Unit tests for ASI09 Human Trust Exploitation detector modules.
 
 import pytest
 
-from modules.medium.asi09_human_trust.detectors import (
+from kevlar.modules.medium.asi09_human_trust.detectors import (
     DeceptionEffectivenessDetector,
     EmotionalExploitationDetector,
     AuthorityForgeryDetector,

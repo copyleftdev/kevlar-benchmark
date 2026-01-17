@@ -5,7 +5,7 @@ Unit tests for ASI02 Tool Abuse attack modules.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.critical.asi02_tool_abuse.attacks import (
+from kevlar.modules.critical.asi02_tool_abuse.attacks import (
     OverprivilegedToolAbuse,
     OverscopedToolAbuse,
     UnvalidatedInputForwarding,

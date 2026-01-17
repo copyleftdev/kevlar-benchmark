@@ -5,7 +5,7 @@ Unit tests for ASI03 Identity Abuse Orchestrator.
 import pytest
 from unittest.mock import patch, MagicMock
 
-from modules.critical.asi03_identity_abuse import IdentityOrchestrator
+from kevlar.modules.critical.asi03_identity_abuse import IdentityOrchestrator
 
 
 class TestIdentityOrchestratorCreation:

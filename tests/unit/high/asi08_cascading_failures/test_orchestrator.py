@@ -5,7 +5,7 @@ Unit tests for ASI08 Cascading Failures Orchestrator.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.high.asi08_cascading_failures import CascadingOrchestrator
+from kevlar.modules.high.asi08_cascading_failures import CascadingOrchestrator
 
 
 class TestCascadingOrchestratorCreation:

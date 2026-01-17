@@ -5,7 +5,7 @@ Unit tests for ASI07 Inter-Agent Communication Orchestrator.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.high.asi07_inter_agent_comms import InterAgentOrchestrator
+from kevlar.modules.high.asi07_inter_agent_comms import InterAgentOrchestrator
 
 
 class TestInterAgentOrchestratorCreation:

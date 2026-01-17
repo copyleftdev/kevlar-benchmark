@@ -5,7 +5,7 @@ Unit tests for ASI10 Rogue Agents Orchestrator.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.medium.asi10_rogue_agents import RogueAgentOrchestrator
+from kevlar.modules.medium.asi10_rogue_agents import RogueAgentOrchestrator
 
 
 class TestRogueAgentOrchestratorCreation:

@@ -4,7 +4,7 @@ Unit tests for ASI10 Rogue Agents detector modules.
 
 import pytest
 
-from modules.medium.asi10_rogue_agents.detectors import (
+from kevlar.modules.medium.asi10_rogue_agents.detectors import (
     ReplicationDetector,
     GoalDriftAnalyzer,
     CollusionPatternDetector,

@@ -4,7 +4,7 @@ Unit tests for ASI10 Rogue Agents attack modules.
 
 import pytest
 
-from modules.medium.asi10_rogue_agents.attacks import (
+from kevlar.modules.medium.asi10_rogue_agents.attacks import (
     SelfReplicationAttack,
     GoalDriftAttack,
     AgentCollusionAttack,

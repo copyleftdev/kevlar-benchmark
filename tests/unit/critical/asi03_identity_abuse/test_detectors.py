@@ -4,7 +4,7 @@ Unit tests for ASI03 Identity Abuse detector modules.
 
 import pytest
 
-from modules.critical.asi03_identity_abuse.detectors import (
+from kevlar.modules.critical.asi03_identity_abuse.detectors import (
     PrivilegeEscalationDetector,
     IdentitySpoofingDetector,
     SessionHijackDetector,

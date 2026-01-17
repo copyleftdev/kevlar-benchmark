@@ -4,7 +4,7 @@ Unit tests for ASI02 Tool Abuse detector modules.
 
 import pytest
 
-from modules.critical.asi02_tool_abuse.detectors import (
+from kevlar.modules.critical.asi02_tool_abuse.detectors import (
     ExcessiveToolUseDetector,
     CostSpikeDetector,
     UnsafeInputDetector,

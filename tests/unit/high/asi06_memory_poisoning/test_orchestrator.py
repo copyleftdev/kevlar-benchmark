@@ -5,7 +5,7 @@ Unit tests for ASI06 Memory Poisoning Orchestrator.
 import pytest
 from unittest.mock import MagicMock
 
-from modules.high.asi06_memory_poisoning import MemoryPoisoningOrchestrator
+from kevlar.modules.high.asi06_memory_poisoning import MemoryPoisoningOrchestrator
 
 
 class TestMemoryPoisoningOrchestratorCreation:

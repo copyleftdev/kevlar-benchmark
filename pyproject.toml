@@ -36,11 +36,10 @@ kevlar = "kevlar.cli:main"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src", "."]
+pythonpath = ["src"]
 addopts = [
     "-v",
     "--cov=src/kevlar",
-    "--cov=.",
     "--cov-report=term-missing",
     "--cov-report=html:htmlcov",
     "--ignore=.venv",
@@ -52,8 +51,8 @@ markers = [
 ]
 
 [tool.coverage.run]
-source = ["src/kevlar", "."]
-omit = [".venv/*", "tests/*", "test_asi*.py", "htmlcov/*", "scripts/*", "src/kevlar/modules/*"]
+source = ["src/kevlar"]
+omit = [".venv/*", "tests/*", "htmlcov/*", "scripts/*"]
 branch = true
 
 [tool.coverage.report]

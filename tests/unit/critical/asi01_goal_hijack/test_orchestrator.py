@@ -5,7 +5,7 @@ Unit tests for ASI01 Goal Hijack Orchestrator.
 import pytest
 from unittest.mock import patch, MagicMock
 
-from modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
+from kevlar.modules.critical.asi01_goal_hijack import GoalHijackOrchestrator
 
 
 class TestGoalHijackOrchestratorCreation:

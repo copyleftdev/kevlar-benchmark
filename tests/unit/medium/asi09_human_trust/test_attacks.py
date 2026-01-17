@@ -4,7 +4,7 @@ Unit tests for ASI09 Human Trust Exploitation attack modules.
 
 import pytest
 
-from modules.medium.asi09_human_trust.attacks import (
+from kevlar.modules.medium.asi09_human_trust.attacks import (
     WeaponizedExplainability,
     EmotionalManipulation,
     AuthorityImpersonation,
