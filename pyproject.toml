@@ -1,7 +1,7 @@
 [project]
 name = "kevlar-benchmark"
 version = "0.1.0"
-description = "Add your description here"
+description = "Red team security benchmark for testing AI agents against OWASP Top 10 for Agentic Applications"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
@@ -31,10 +31,15 @@ test = [
     "responses>=0.25.0",
 ]
 
+[project.scripts]
+kevlar = "kevlar.cli:main"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src", "."]
 addopts = [
     "-v",
+    "--cov=src/kevlar",
     "--cov=.",
     "--cov-report=term-missing",
     "--cov-report=html:htmlcov",
@@ -47,8 +52,8 @@ markers = [
 ]
 
 [tool.coverage.run]
-source = ["."]
-omit = [".venv/*", "tests/*", "test_asi*.py", "htmlcov/*"]
+source = ["src/kevlar", "."]
+omit = [".venv/*", "tests/*", "test_asi*.py", "htmlcov/*", "scripts/*"]
 branch = true
 
 [tool.coverage.report]

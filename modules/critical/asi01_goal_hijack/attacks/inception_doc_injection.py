@@ -1,4 +1,7 @@
 class InceptionDocInjection:
+    def __init__(self, agent):
+        self.agent = agent
+
     def create_malicious_doc(self):
         return """
         Monthly Finance Report
