@@ -13,7 +13,7 @@ class TestRunnerCLIFlow:
 
     def test_full_mock_agent_run(self, tmp_path, monkeypatch):
         """Test full run with mock agent."""
-        from runner import run_asi_test, generate_aivss_report, create_agent
+        from kevlar.cli import run_asi_test, generate_aivss_report, create_agent
 
         monkeypatch.chdir(tmp_path)
 
@@ -39,7 +39,7 @@ class TestRunnerCLIFlow:
 
     def test_all_asi_tests_sequential(self, tmp_path, monkeypatch):
         """Test running all ASI tests sequentially."""
-        from runner import run_asi_test, generate_aivss_report, create_agent
+        from kevlar.cli import run_asi_test, generate_aivss_report, create_agent
 
         monkeypatch.chdir(tmp_path)
 
@@ -59,7 +59,7 @@ class TestRunnerCLIFlow:
 
     def test_report_format_compliance(self, tmp_path, monkeypatch):
         """Test that report format is AIVSS compliant."""
-        from runner import run_asi_test, generate_aivss_report, create_agent
+        from kevlar.cli import run_asi_test, generate_aivss_report, create_agent
 
         monkeypatch.chdir(tmp_path)
 
@@ -94,7 +94,7 @@ class TestAgentSelection:
 
     def test_mock_agent_selection(self):
         """Test creating mock agent."""
-        from runner import create_agent
+        from kevlar.cli import create_agent
         from local_agent import MockCopilotAgent
 
         agent = create_agent("mock")
@@ -102,7 +102,7 @@ class TestAgentSelection:
 
     def test_real_agent_selection(self):
         """Test creating real agent with mocked dependencies."""
-        from runner import create_agent
+        from kevlar.cli import create_agent
 
         with patch.dict('sys.modules', {
             'langchain_ollama': MagicMock(),
@@ -119,7 +119,7 @@ class TestResultsAggregation:
 
     def test_vulnerability_counting(self, tmp_path, monkeypatch):
         """Test vulnerability counting in report."""
-        from runner import generate_aivss_report
+        from kevlar.cli import generate_aivss_report
 
         monkeypatch.chdir(tmp_path)
 
@@ -148,7 +148,7 @@ class TestResultsAggregation:
 
     def test_error_handling_in_results(self, tmp_path, monkeypatch):
         """Test handling of errors in results."""
-        from runner import generate_aivss_report
+        from kevlar.cli import generate_aivss_report
 
         monkeypatch.chdir(tmp_path)
 
@@ -182,7 +182,7 @@ class TestMultipleRuns:
 
     def test_multiple_report_generation(self, tmp_path, monkeypatch):
         """Test generating multiple reports."""
-        from runner import run_asi_test, generate_aivss_report, create_agent
+        from kevlar.cli import run_asi_test, generate_aivss_report, create_agent
         import time
 
         monkeypatch.chdir(tmp_path)
