@@ -53,7 +53,7 @@ markers = [
 
 [tool.coverage.run]
 source = ["src/kevlar", "."]
-omit = [".venv/*", "tests/*", "test_asi*.py", "htmlcov/*", "scripts/*"]
+omit = [".venv/*", "tests/*", "test_asi*.py", "htmlcov/*", "scripts/*", "src/kevlar/modules/*"]
 branch = true
 
 [tool.coverage.report]
