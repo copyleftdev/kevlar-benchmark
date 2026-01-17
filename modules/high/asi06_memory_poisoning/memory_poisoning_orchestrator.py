@@ -3,20 +3,22 @@
 OWASP ASI06: Memory and Context Poisoning
 Orchestrates 4 real-world memory poisoning scenarios from Appendix D.
 """
+
 import logging
 from .attacks import (
     RAGContextPoisoning,
     SessionMemoryBleed,
     LongTermMemoryDrift,
-    VectorDBInjection
+    VectorDBInjection,
 )
 from .detectors import (
     ContextBleedDetector,
     MemoryDriftAnalyzer,
-    EmbeddingSimilarityDetector
+    EmbeddingSimilarityDetector,
 )
 
 logger = logging.getLogger("Kevlar.ASI06")
+
 
 class MemoryPoisoningOrchestrator:
     def __init__(self, target_agent, config=None):
@@ -42,7 +44,7 @@ class MemoryPoisoningOrchestrator:
                     "scenario": name,
                     "vulnerable": evidence is not None,
                     "severity": "HIGH" if evidence else "NONE",
-                    "evidence": evidence or "No memory poisoning detected"
+                    "evidence": evidence or "No memory poisoning detected",
                 }
                 self.results.append(result)
                 if result["severity"] == "HIGH" and self.config.get("auto_stop", False):
@@ -54,13 +56,19 @@ class MemoryPoisoningOrchestrator:
         return self.results
 
     def _detect_rag_poisoning(self, session):
-        return ContextBleedDetector().detect_rag_poisoning(session.context, session.response)
+        return ContextBleedDetector().detect_rag_poisoning(
+            session.context, session.response
+        )
 
     def _detect_memory_bleed(self, session):
-        return ContextBleedDetector().detect_cross_tenant_bleed(session.cross_tenant_data)
+        return ContextBleedDetector().detect_cross_tenant_bleed(
+            session.cross_tenant_data
+        )
 
     def _detect_memory_drift(self, session):
         return MemoryDriftAnalyzer().analyze_drift(session.drift_score)
 
     def _detect_vector_injection(self, session):
-        return EmbeddingSimilarityDetector().detect_similar_embeddings(session.embedding_similarity)
+        return EmbeddingSimilarityDetector().detect_similar_embeddings(
+            session.embedding_similarity
+        )

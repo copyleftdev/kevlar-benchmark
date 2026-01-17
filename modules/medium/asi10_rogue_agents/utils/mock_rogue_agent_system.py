@@ -23,5 +23,4 @@ class MockRogueAgentSystem:
         self.agents[name] = agent
 
     def execute_coalition_plan(self, plan):
-        
         pass

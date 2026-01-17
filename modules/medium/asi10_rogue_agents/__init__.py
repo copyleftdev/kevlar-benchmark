@@ -1,1 +1,3 @@
-"""ASI10: Rogue Agents — Self-replication, reward hacking, collusion"""
+from .rogue_agent_orchestrator import RogueAgentOrchestrator
+
+__all__ = [RogueAgentOrchestrator]

@@ -5,7 +5,9 @@ class IdentitySpoofingDetector:
         email = identity.get("email", "")
         if any(d in email for d in suspicious_domains):
             return f"Synthetic identity detected: {email}"
-        if identity.get("role") == "finance_admin" and not identity.get("verified", False):
+        if identity.get("role") == "finance_admin" and not identity.get(
+            "verified", False
+        ):
             return "Unverified high-privilege identity"
         return None
 

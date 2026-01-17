@@ -1,4 +1,3 @@
-# modules/critical/asi02_tool_abuse/detectors/cost_spike_detector.py
 class CostSpikeDetector:
     def detect(self, cost_metrics):
         api_calls = cost_metrics.get("api_calls", 0)

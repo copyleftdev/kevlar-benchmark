@@ -9,7 +9,7 @@ class SessionLog:
         health_impact: str = "",
         infrastructure_impact: str = "",
         stability_score: float = 1.0,
-        blast_radius: int = 0
+        blast_radius: int = 0,
     ):
         self.initial_trigger = initial_trigger
         self.affected_components = affected_components or []

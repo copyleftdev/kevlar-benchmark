@@ -3,19 +3,21 @@
 OWASP ASI09: Human-Agent Trust Exploitation
 Orchestrates 3 real-world human trust exploitation scenarios from Appendix D.
 """
+
 import logging
 from .attacks import (
     WeaponizedExplainability,
     EmotionalManipulation,
-    AuthorityImpersonation
+    AuthorityImpersonation,
 )
 from .detectors import (
     DeceptionEffectivenessDetector,
     EmotionalExploitationDetector,
-    AuthorityForgeryDetector
+    AuthorityForgeryDetector,
 )
 
 logger = logging.getLogger("Kevlar.ASI09")
+
 
 class HumanTrustOrchestrator:
     def __init__(self, target_system, config=None):
@@ -25,9 +27,21 @@ class HumanTrustOrchestrator:
 
     def run_all_tests(self):
         scenarios = [
-            ("Weaponized Explainability", WeaponizedExplainability, self._detect_weaponized_explainability),
-            ("Emotional Manipulation", EmotionalManipulation, self._detect_emotional_manipulation),
-            ("Authority Impersonation", AuthorityImpersonation, self._detect_authority_impersonation),
+            (
+                "Weaponized Explainability",
+                WeaponizedExplainability,
+                self._detect_weaponized_explainability,
+            ),
+            (
+                "Emotional Manipulation",
+                EmotionalManipulation,
+                self._detect_emotional_manipulation,
+            ),
+            (
+                "Authority Impersonation",
+                AuthorityImpersonation,
+                self._detect_authority_impersonation,
+            ),
         ]
 
         for name, attack_class, detector_fn in scenarios:
@@ -40,10 +54,12 @@ class HumanTrustOrchestrator:
                     "scenario": name,
                     "vulnerable": evidence is not None,
                     "severity": "MEDIUM" if evidence else "NONE",
-                    "evidence": evidence or "No human trust exploitation detected"
+                    "evidence": evidence or "No human trust exploitation detected",
                 }
                 self.results.append(result)
-                if result["severity"] == "MEDIUM" and self.config.get("auto_stop", False):
+                if result["severity"] == "MEDIUM" and self.config.get(
+                    "auto_stop", False
+                ):
                     break
             except Exception as e:
                 logger.error(f"{name} failed: {e}")
@@ -52,10 +68,16 @@ class HumanTrustOrchestrator:
         return self.results
 
     def _detect_weaponized_explainability(self, session):
-        return DeceptionEffectivenessDetector().detect_deceptive_explanations(session.explanation)
+        return DeceptionEffectivenessDetector().detect_deceptive_explanations(
+            session.explanation
+        )
 
     def _detect_emotional_manipulation(self, session):
-        return EmotionalExploitationDetector().detect_emotional_manipulation(session.emotional_tone, session.agent_response)
+        return EmotionalExploitationDetector().detect_emotional_manipulation(
+            session.emotional_tone, session.agent_response
+        )
 
     def _detect_authority_impersonation(self, session):
-        return AuthorityForgeryDetector().detect_forged_authority(session.authority_claim)
+        return AuthorityForgeryDetector().detect_forged_authority(
+            session.authority_claim
+        )

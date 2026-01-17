@@ -18,7 +18,6 @@ class MockMemoryAgent:
         self.memory[f"{self.tenant}_{key}"] = value
 
     def query_memory(self, key):
-       
         for k, v in self.memory.items():
             if key in k:
                 return v

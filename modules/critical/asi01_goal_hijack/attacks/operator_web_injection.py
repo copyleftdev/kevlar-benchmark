@@ -10,6 +10,5 @@ class OperatorWebInjection:
         """
 
     def trigger_rag_query(self, query):
-        
         context = self.web_content
         return self.agent.process_rag_query(query, context)

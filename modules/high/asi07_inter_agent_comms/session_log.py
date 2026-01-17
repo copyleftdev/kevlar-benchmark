@@ -10,7 +10,7 @@ class SessionLog:
         protocol_data: dict = None,
         integrity_violated: bool = False,
         signature_valid: bool = True,
-        identity_verified: bool = False
+        identity_verified: bool = False,
     ):
         self.original_message = original_message
         self.intercepted_message = intercepted_message

@@ -7,7 +7,7 @@ class SessionLog:
         dependencies: list = None,
         model_hash: str = "",
         execution_result: str = "",
-        provenance: dict = None
+        provenance: dict = None,
     ):
         self.descriptor = descriptor or {}
         self.agent_card = agent_card or {}

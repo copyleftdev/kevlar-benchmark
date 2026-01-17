@@ -1,3 +1,6 @@
+from kevlar_types import SessionLog
+
+
 # modules/critical/asi02_tool_abuse/attacks/unsafe_browsing.py
 class UnsafeBrowsing:
     def __init__(self, agent):

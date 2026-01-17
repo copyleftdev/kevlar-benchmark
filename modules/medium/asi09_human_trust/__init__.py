@@ -1,1 +1,3 @@
-"""ASI09: Human Trust Exploitation — Fake explainability, emotional manipulation"""
+from .human_trust_orchestrator import HumanTrustOrchestrator
+
+__all__ = [HumanTrustOrchestrator]

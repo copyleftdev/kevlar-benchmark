@@ -23,6 +23,7 @@ from .detectors.lockfile_poisoning_detector import LockfilePoisoningDetector
 
 logger = logging.getLogger("Kevlar.ASI05")
 
+
 class RCEOrchestrator:
     def __init__(self, target_agent: Any, config: Dict[str, Any] = None):
         self.agent = target_agent
@@ -36,50 +37,50 @@ class RCEOrchestrator:
                 "name": "Shell Injection",
                 "exploit": ShellInjectionExploit,
                 "detector": ShellInjectionDetector,
-                "input_attr": "agent_output"
+                "input_attr": "agent_output",
             },
             {
                 "name": "Vibe Coding Abuse",
                 "exploit": VibeCodingAbuse,
                 "detector": VibeCodingDetector,
-                "input_attr": "agent_output"
+                "input_attr": "agent_output",
             },
             {
                 "name": "Code Hallucination",
                 "exploit": CodeHallucinationExploit,
                 "detector": CodeHallucinationDetector,
-                "input_attr": "agent_output"
+                "input_attr": "agent_output",
             },
             {
                 "name": "Deserialization Attack",
                 "exploit": DeserializationAttack,
                 "detector": DeserializationDetector,
-                "input_attr": "agent_output"
+                "input_attr": "agent_output",
             },
             {
                 "name": "Toolchain RCE",
                 "exploit": ToolchainRCE,
                 "detector": ToolchainRCEDetector,
-                "input_attr": "tool_chain"
+                "input_attr": "tool_chain",
             },
             {
                 "name": "Memory Eval RCE",
                 "exploit": MemoryEvalRCE,
                 "detector": MemoryEvalDetector,
-                "input_attr": "memory_content"
+                "input_attr": "memory_content",
             },
             {
                 "name": "Agent-Generated Backdoor",
                 "exploit": AgentGeneratedBackdoor,
                 "detector": AgentGeneratedBackdoorDetector,
-                "input_attr": "agent_output"
+                "input_attr": "agent_output",
             },
             {
                 "name": "Lockfile Poisoning",
                 "exploit": LockfilePoisoning,
                 "detector": LockfilePoisoningDetector,
-                "input_attr": "requirements_content"
-            }
+                "input_attr": "requirements_content",
+            },
         ]
 
         for case in test_cases:
@@ -87,11 +88,11 @@ class RCEOrchestrator:
                 logger.info(f"Running ASI05 test: {case['name']}")
                 exploit = case["exploit"](self.agent)
                 session = exploit.execute()
-                
+
                 input_data = getattr(session, case["input_attr"], None)
                 if input_data is None:
                     input_data = str(session.agent_output)  # fallback
-                
+
                 detector = case["detector"]()
                 evidence = detector.detect(input_data)
 
@@ -99,20 +100,22 @@ class RCEOrchestrator:
                     "scenario": case["name"],
                     "vulnerable": evidence is not None,
                     "severity": "CRITICAL" if evidence else "NONE",
-                    "evidence": evidence or "No RCE indicators detected"
+                    "evidence": evidence or "No RCE indicators detected",
                 }
                 self.results.append(result)
 
-                if result["severity"] == "CRITICAL" and self.config.get("auto_stop_on_critical", False):
-                    logger.critical(f"Critical RCE in {case['name']}. Auto-stop triggered.")
+                if result["severity"] == "CRITICAL" and self.config.get(
+                    "auto_stop_on_critical", False
+                ):
+                    logger.critical(
+                        f"Critical RCE in {case['name']}. Auto-stop triggered."
+                    )
                     break
 
             except Exception as e:
                 logger.error(f"Test '{case['name']}' failed: {e}")
-                self.results.append({
-                    "scenario": case["name"],
-                    "error": str(e),
-                    "severity": "ERROR"
-                })
+                self.results.append(
+                    {"scenario": case["name"], "error": str(e), "severity": "ERROR"}
+                )
 
         return self.results

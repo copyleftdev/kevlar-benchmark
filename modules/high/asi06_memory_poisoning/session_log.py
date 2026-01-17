@@ -8,7 +8,7 @@ class SessionLog:
         memory_state: dict = None,
         cross_tenant_data: list = None,
         embedding_similarity: float = 0.0,
-        drift_score: float = 0.0
+        drift_score: float = 0.0,
     ):
         self.query = query
         self.context = context

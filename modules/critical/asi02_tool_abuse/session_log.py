@@ -6,7 +6,7 @@ class SessionLog:
         agent_output="",
         network_egress=None,
         cost_metrics=None,
-        unsafe_inputs=None
+        unsafe_inputs=None,
     ):
         self.tool_calls = tool_calls or []
         self.agent_output = agent_output

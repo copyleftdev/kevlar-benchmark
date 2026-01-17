@@ -10,7 +10,7 @@ class SessionLog:
         user_decision: str = "",
         deception_score: float = 0.0,
         manipulation_detected: bool = False,
-        authority_verified: bool = False
+        authority_verified: bool = False,
     ):
         self.user_request = user_request
         self.agent_response = agent_response

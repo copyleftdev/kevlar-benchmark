@@ -9,7 +9,7 @@ class SessionLog:
         collusion_patterns: list = None,
         replication_count: int = 0,
         goal_drift_score: float = 0.0,
-        coalition_detected: bool = False
+        coalition_detected: bool = False,
     ):
         self.original_agent = original_agent
         self.spawned_agents = spawned_agents or []

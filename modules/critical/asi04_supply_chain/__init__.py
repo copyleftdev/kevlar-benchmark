@@ -1,1 +1,3 @@
-"""ASI04: Supply Chain — MCP poisoning, agent card forgery, npm backdoors"""
+from .supply_chain_orchestrator import SupplyChainOrchestrator
+
+__all__ = [SupplyChainOrchestrator]

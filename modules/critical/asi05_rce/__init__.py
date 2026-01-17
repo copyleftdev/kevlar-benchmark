@@ -1,1 +1,3 @@
-"""ASI05: RCE — Shell, eval, deserialization, vibe coding risks"""
+from .rce_orchestrator import RCEOrchestrator
+
+__all__ = [RCEOrchestrator]

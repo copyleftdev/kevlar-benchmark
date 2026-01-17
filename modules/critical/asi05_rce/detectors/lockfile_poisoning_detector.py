@@ -4,7 +4,7 @@ class LockfilePoisoningDetector:
             "malicious-utils",
             "fake-fix",
             "patch-helper",
-            "agent-updater"
+            "agent-updater",
         ]
         for pkg in suspicious_packages:
             if pkg in requirements_content:

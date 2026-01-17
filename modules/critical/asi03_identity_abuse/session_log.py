@@ -7,7 +7,7 @@ class SessionLog:
         tool_calls: list = None,
         session_token: str = "",
         escalated_actions: list = None,
-        impersonated_entities: list = None
+        impersonated_entities: list = None,
     ):
         self.agent_output = agent_output
         self.identity_context = identity_context or {}

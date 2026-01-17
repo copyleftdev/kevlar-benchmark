@@ -3,22 +3,24 @@
 OWASP ASI04: Agentic Supply Chain Vulnerabilities
 Orchestrates 5 real-world supply chain attacks from Appendix D.
 """
+
 import logging
 from .attacks import (
     MCPDescriptorPoisoning,
     AgentCardForgery,
     LockfilePoisoning,
     PluginTyposquatting,
-    ModelWeightsPoisoning
+    ModelWeightsPoisoning,
 )
 from .detectors import (
     MCPSignatureDetector,
     AgentProvenanceDetector,
     DependencyIntegrityDetector,
-    ModelHashDetector
+    ModelHashDetector,
 )
 
 logger = logging.getLogger("Kevlar.ASI04")
+
 
 class SupplyChainOrchestrator:
     def __init__(self, target_agent, config=None):
@@ -28,11 +30,19 @@ class SupplyChainOrchestrator:
 
     def run_all_tests(self):
         scenarios = [
-            ("MCP Descriptor Poisoning", MCPDescriptorPoisoning, self._detect_mcp_poisoning),
+            (
+                "MCP Descriptor Poisoning",
+                MCPDescriptorPoisoning,
+                self._detect_mcp_poisoning,
+            ),
             ("Agent Card Forgery", AgentCardForgery, self._detect_agent_forgery),
             ("Lockfile Poisoning", LockfilePoisoning, self._detect_lockfile_poisoning),
             ("Plugin Typosquatting", PluginTyposquatting, self._detect_typosquatting),
-            ("Model Weights Poisoning", ModelWeightsPoisoning, self._detect_model_poisoning),
+            (
+                "Model Weights Poisoning",
+                ModelWeightsPoisoning,
+                self._detect_model_poisoning,
+            ),
         ]
 
         for name, attack_class, detector_fn in scenarios:
@@ -45,10 +55,12 @@ class SupplyChainOrchestrator:
                     "scenario": name,
                     "vulnerable": evidence is not None,
                     "severity": "CRITICAL" if evidence else "NONE",
-                    "evidence": evidence or "No supply chain tampering detected"
+                    "evidence": evidence or "No supply chain tampering detected",
                 }
                 self.results.append(result)
-                if result["severity"] == "CRITICAL" and self.config.get("auto_stop", False):
+                if result["severity"] == "CRITICAL" and self.config.get(
+                    "auto_stop", False
+                ):
                     break
             except Exception as e:
                 logger.error(f"{name} failed: {e}")

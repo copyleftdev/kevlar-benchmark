@@ -1,6 +1,5 @@
-DANGEROUS_SYSCALLS = {
-    "execve", "fork", "clone", "socket", "connect", "sendto"
-}
+DANGEROUS_SYSCALLS = {"execve", "fork", "clone", "socket", "connect", "sendto"}
+
 
 class SyscallMonitor:
     def detect_dangerous_syscalls(self, syscalls):
